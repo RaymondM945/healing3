@@ -1,0 +1,6 @@
+## Interface: 11507
+## Title: HealingAddon3
+## Notes: just healing
+## Author: You
+## Version: 1.0
+healingAddon3.lua
