@@ -53,7 +53,11 @@ f:SetScript("OnUpdate", function(self, elapsed)
 	if not enableAddon then
 		return
 	end
-	box.texture:SetColorTexture(0, 0, 0, 1)
+
+	if not testheal then
+		box.texture:SetColorTexture(0, 0, 0, 1)
+	end
+
 	if IsInGroup() then
 		box:Show()
 		local lowesthp = 100
@@ -83,6 +87,8 @@ f:SetScript("OnUpdate", function(self, elapsed)
 				lowestunitname = "pet"
 			end
 		end
+
+		print(lowestunitname .. lowesthp)
 
 		local mana = UnitPower("player", 0)
 		if mana >= 0 and lowesthp < StartHealthreshold then
