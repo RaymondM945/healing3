@@ -69,7 +69,7 @@ f:SetScript("OnUpdate", function(self, elapsed)
 
 				if healthPercent < lowesthp then
 					lowesthp = healthPercent
-					lowestunitname = name
+					lowestunitname = unit
 				end
 			end
 		end
@@ -89,6 +89,7 @@ f:SetScript("OnUpdate", function(self, elapsed)
 			if lowesthp <= Holylightthreshold then
 				local spellName = UnitCastingInfo("player")
 				local usable, nomana = IsUsableSpell("Holy Light")
+
 				if spellName ~= "Holy Light" and usable then
 					local r, g, b = unpack(HolylightMap[lowestunitname] or { 0, 0, 0, 1 })
 					box.texture:SetColorTexture(r, g, b, 1)
