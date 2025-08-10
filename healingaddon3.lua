@@ -53,7 +53,7 @@ f:SetScript("OnUpdate", function(self, elapsed)
 	if not enableAddon then
 		return
 	end
-
+	box.texture:SetColorTexture(0, 0, 0, 1)
 	if IsInGroup() then
 		box:Show()
 		local lowesthp = 100
