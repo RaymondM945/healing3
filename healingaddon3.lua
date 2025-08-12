@@ -91,7 +91,7 @@ f:SetScript("OnUpdate", function(self, elapsed)
 		local mana = UnitPower("player", 0)
 		local haveDebuff = false
 		for i = 1, 40 do
-			local name, _, _, debuffType = UnitDebuff("party2", i)
+			local name, _, _, debuffType = UnitDebuff("party1", i)
 
 			if not name then
 				break
