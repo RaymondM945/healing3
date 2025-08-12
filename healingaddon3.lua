@@ -88,10 +88,23 @@ f:SetScript("OnUpdate", function(self, elapsed)
 			end
 		end
 
-		print(lowestunitname .. lowesthp)
-
 		local mana = UnitPower("player", 0)
-		if mana >= 0 and lowesthp < StartHealthreshold then
+		local haveDebuff = false
+		for i = 1, 40 do
+			local name, _, _, debuffType = UnitDebuff("party2", i)
+
+			if not name then
+				break
+			end
+
+			if debuffType == "Magic" then
+				print("Magic debuff found:", name)
+				haveDebuff = true
+			end
+		end
+		if haveDebuff then
+			box.texture:SetColorTexture(1, 0.5, 0.5, 1)
+		elseif mana >= 0 and lowesthp < StartHealthreshold then
 			if lowesthp <= Holylightthreshold then
 				local spellName = UnitCastingInfo("player")
 				local usable, nomana = IsUsableSpell("Holy Light")
