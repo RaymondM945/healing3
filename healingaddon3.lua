@@ -77,6 +77,7 @@ f:SetScript("OnUpdate", function(self, elapsed)
 				end
 			end
 		end
+
 		if UnitExists(playerpetname) then
 			local petHealth = UnitHealth(playerpetname)
 			local petMaxHealth = UnitHealthMax(playerpetname)
@@ -88,8 +89,15 @@ f:SetScript("OnUpdate", function(self, elapsed)
 			end
 		end
 
+		local havePot = false
+		local info = C_Container.GetContainerItemInfo(0, 1)
+		if info then
+			local itemName, _, _, _, _, itemType = GetItemInfo(info.itemID)
+			if itemType == "Consumable" then
+				havePot = true
+			end
+		end
 		local potstart, potduration, enable = C_Container.GetContainerItemCooldown(0, 1)
-
 		local mana = UnitPower("player", 0)
 		local max = UnitPowerMax("player", 0)
 		local manapercent = (mana / max) * 100
@@ -114,9 +122,9 @@ f:SetScript("OnUpdate", function(self, elapsed)
 		local dusable, dnoMana = IsUsableSpell(name)
 		local dstart, dduration = GetSpellCooldown(642)
 
-		if playerhealthPercent < 50 and dduration == 0 and dstart == 0 then
+		if playerhealthPercent < 98 and dduration == 0 and dstart == 0 then
 			box.texture:SetColorTexture(1, 0.5, 1, 1)
-		elseif manapercent < 50 and potstart == 0 and potduration == 0 then
+		elseif manapercent < 99 and havePot and potstart == 0 and potduration == 0 then
 			box.texture:SetColorTexture(0.5, 0.5, 1, 1)
 		elseif haveDebuff then
 			box.texture:SetColorTexture(1, 0.5, 0.5, 1)
