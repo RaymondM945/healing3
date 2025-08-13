@@ -101,6 +101,7 @@ f:SetScript("OnUpdate", function(self, elapsed)
 		local mana = UnitPower("player", 0)
 		local max = UnitPowerMax("player", 0)
 		local manapercent = (mana / max) * 100
+
 		local haveDebuff = false
 		for i = 1, 40 do
 			local name, _, _, debuffType = UnitDebuff("party1", i)
@@ -124,7 +125,7 @@ f:SetScript("OnUpdate", function(self, elapsed)
 
 		if playerhealthPercent < 98 and dduration == 0 and dstart == 0 then
 			box.texture:SetColorTexture(1, 0.5, 1, 1)
-		elseif manapercent < 99 and havePot and potstart == 0 and potduration == 0 then
+		elseif manapercent < 50 and havePot and potstart == 0 and potduration == 0 then
 			box.texture:SetColorTexture(0.5, 0.5, 1, 1)
 		elseif haveDebuff then
 			box.texture:SetColorTexture(1, 0.5, 0.5, 1)
